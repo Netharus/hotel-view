@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - preConditions:
+      - dbms:
+          type: h2
+  - include:
+      file: 0.0.1/v1-accumulative-changelog.yaml
+      relativeToChangelogFile: true
