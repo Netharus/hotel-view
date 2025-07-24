@@ -36,10 +36,10 @@ public class Hotels {
     @Column(unique = true, nullable = false)
     String name;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     String description;
 
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     String brand;
 
     @OneToOne(cascade = CascadeType.ALL)
