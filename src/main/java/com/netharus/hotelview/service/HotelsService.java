@@ -9,4 +9,8 @@ public interface HotelsService {
     List<HotelResponseDto> getHotelDtoList();
 
     FullHotelResponseDto findHotelById(Long id);
+
+
+    List<HotelResponseDto> searchHotels(String name, String brand,
+                                        String city, String country, List<String> amenities);
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,7 +28,20 @@ public class HotelRestController {
     }
 
     @GetMapping("/{hotelId}")
+    @ResponseStatus(HttpStatus.OK)
     public FullHotelResponseDto getHotelById(@PathVariable Long hotelId) {
         return hotelsService.findHotelById(hotelId);
+    }
+
+    @GetMapping("/search")
+    @ResponseStatus(HttpStatus.OK)
+    public List<HotelResponseDto> searchHotels(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String brand,
+            @RequestParam(required = false) String city,
+            @RequestParam(required = false) String country,
+            @RequestParam(required = false) List<String> amenities
+    ) {
+        return hotelsService.searchHotels(name, brand, city, country, amenities);
     }
 }
