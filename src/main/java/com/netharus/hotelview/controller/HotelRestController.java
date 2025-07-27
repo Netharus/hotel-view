@@ -6,7 +6,6 @@ import com.netharus.hotelview.dto.response.HotelResponseDto;
 import com.netharus.hotelview.service.AmenityService;
 import com.netharus.hotelview.service.HotelsService;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

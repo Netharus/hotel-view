@@ -3,6 +3,7 @@ package com.netharus.hotelview.handler;
 import com.netharus.hotelview.dto.response.ErrorResponse;
 import com.netharus.hotelview.exceptions.HotelNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -83,6 +84,26 @@ public class GlobalExceptionHandler {
             String errorMessage = error.getDefaultMessage();
 
             errors.computeIfAbsent(objectName, k -> new ArrayList<>()).add(errorMessage);
+        });
+
+        ErrorResponse errorResponse = ErrorResponse.validationError(request.getRequestURI(), errors);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    @ExceptionHandler(ConstraintViolationException.class)
+    public ResponseEntity<ErrorResponse> handleConstraintViolationException(
+            ConstraintViolationException ex, HttpServletRequest request) {
+
+        log.warn("Constraint violation at {}: {}", request.getRequestURI(), ex.getMessage());
+
+        Map<String, List<String>> errors = new HashMap<>();
+
+        ex.getConstraintViolations().forEach(violation -> {
+            String propertyPath = violation.getPropertyPath().toString();
+            String message = violation.getMessage();
+
+            errors.computeIfAbsent(propertyPath, k -> new ArrayList<>()).add(message);
         });
 
         ErrorResponse errorResponse = ErrorResponse.validationError(request.getRequestURI(), errors);
