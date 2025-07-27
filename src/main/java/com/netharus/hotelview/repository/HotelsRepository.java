@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface HotelsRepository extends JpaRepository<Hotels, Long>, JpaSpecificationExecutor<Hotels> {
 
+    Boolean existsByNameIgnoreCase(String name);
+
 }

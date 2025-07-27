@@ -1,12 +1,16 @@
 package com.netharus.hotelview.controller;
 
+import com.netharus.hotelview.dto.request.HotelCreateDto;
 import com.netharus.hotelview.dto.response.FullHotelResponseDto;
 import com.netharus.hotelview.dto.response.HotelResponseDto;
 import com.netharus.hotelview.service.HotelsService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -31,6 +35,12 @@ public class HotelRestController {
     @ResponseStatus(HttpStatus.OK)
     public FullHotelResponseDto getHotelById(@PathVariable Long hotelId) {
         return hotelsService.findHotelById(hotelId);
+    }
+
+    @PostMapping()
+    @ResponseStatus(HttpStatus.CREATED)
+    public HotelResponseDto createHotel(@Valid @RequestBody HotelCreateDto hotelCreateDto) {
+        return hotelsService.add(hotelCreateDto);
     }
 
     @GetMapping("/search")

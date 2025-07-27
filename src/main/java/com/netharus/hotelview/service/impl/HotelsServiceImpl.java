@@ -2,6 +2,7 @@ package com.netharus.hotelview.service.impl;
 
 import com.netharus.hotelview.domain.Amenity;
 import com.netharus.hotelview.domain.Hotels;
+import com.netharus.hotelview.dto.request.HotelCreateDto;
 import com.netharus.hotelview.dto.response.FullHotelResponseDto;
 import com.netharus.hotelview.dto.response.HotelResponseDto;
 import com.netharus.hotelview.exceptions.ErrorMessages;
@@ -51,6 +52,12 @@ public class HotelsServiceImpl implements HotelsService {
         specs = specs.and(likeCountry(country));
         specs = specs.and(hasAmenitiesLike(amenities));
         return hotelMapper.fromHotelListToHotelDtoList(hotelsRepository.findAll(specs));
+    }
+
+    @Override
+    public HotelResponseDto add(HotelCreateDto hotelCreateDto) {
+        Hotels hotel = hotelMapper.fromHotelCreateDtoToHotel(hotelCreateDto);
+        return hotelMapper.fromHotelToHotelDto(hotelsRepository.save(hotel));
     }
 
 

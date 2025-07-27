@@ -1,5 +1,6 @@
 package com.netharus.hotelview.service;
 
+import com.netharus.hotelview.dto.request.HotelCreateDto;
 import com.netharus.hotelview.dto.response.FullHotelResponseDto;
 import com.netharus.hotelview.dto.response.HotelResponseDto;
 
@@ -13,4 +14,6 @@ public interface HotelsService {
 
     List<HotelResponseDto> searchHotels(String name, String brand,
                                         String city, String country, List<String> amenities);
+
+    HotelResponseDto add(HotelCreateDto hotelCreateDto);
 }
