@@ -1,6 +1,6 @@
-id,phone,email
-1,+375 17 309-80-00,doubletreeminsk.info@hilton.com
-2,+44 20 7946 0018,london.marriott@example.com
-3,+1 202-456-1111,whotel.dc@example.com
-4,+33 1 23 45 67 89,paris.hotel@example.com
-5,+65 6789 0000,singapore.stay@example.com
+phone,email
++375 17 309-81-00,doubletreeminsk.info@hilton.com
++44 20 7946 0018,london.marriott@example.com
++1 202-456-1111,whotel.dc@example.com
++33 1 23 45 67 89,paris.hotel@example.com
++65 6789 0000,singapore.stay@example.com
