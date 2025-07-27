@@ -60,6 +60,14 @@ public class HotelsServiceImpl implements HotelsService {
         return hotelMapper.fromHotelToHotelDto(hotelsRepository.save(hotel));
     }
 
+    @Override
+    public void addAmenitiesById(Long hotelId, List<Amenity> amenities) {
+        Hotels hotel = hotelsRepository.findById(hotelId)
+                .orElseThrow(() -> new HotelNotFoundException(String.format(ErrorMessages.HOTEL_NOT_FOUND, hotelId)));
+        amenities.forEach(amenity -> hotel.getAmenities().add(amenity));
+        hotelsRepository.save(hotel);
+    }
+
 
     private Specification<Hotels> likeName(String name) {
         if (name == null) {
