@@ -3,8 +3,10 @@ package com.netharus.hotelview.controller;
 import com.netharus.hotelview.dto.request.HotelCreateDto;
 import com.netharus.hotelview.dto.response.FullHotelResponseDto;
 import com.netharus.hotelview.dto.response.HotelResponseDto;
+import com.netharus.hotelview.service.AmenityService;
 import com.netharus.hotelview.service.HotelsService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +26,8 @@ import java.util.List;
 public class HotelRestController {
 
     private final HotelsService hotelsService;
+
+    private final AmenityService amenityService;
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
@@ -53,5 +57,12 @@ public class HotelRestController {
             @RequestParam(required = false) List<String> amenities
     ) {
         return hotelsService.searchHotels(name, brand, city, country, amenities);
+    }
+
+    @PostMapping("/{hotelId}/amenities")
+    @ResponseStatus(HttpStatus.OK)
+    public void addAmenities(@PathVariable Long hotelId, @RequestBody List<String> amenities) {
+        amenityService.saveMissingAmenities(amenities);
+        hotelsService.addAmenitiesById(hotelId, amenityService.getAmenitiesByName(amenities));
     }
 }
