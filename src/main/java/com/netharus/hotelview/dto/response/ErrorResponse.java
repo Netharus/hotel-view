@@ -15,4 +15,13 @@ public record ErrorResponse(
         String instance,
         Map<String, List<String>> errors
 ) {
+    public static ErrorResponse validationError(String path, Map<String, List<String>> fieldErrors) {
+        return ErrorResponse.builder()
+                .title("Validation Failed")
+                .status(400)
+                .detail("The request contains invalid data")
+                .instance(path)
+                .errors(fieldErrors)
+                .build();
+    }
 }
