@@ -12,14 +12,14 @@ public class HistogramValidator implements ConstraintValidator<HistogramValid, S
             return false;
         }
 
-        boolean isValid = AllowedParametrisesHistogram.getParameterNames().contains(s.toLowerCase());
+        boolean isValid = AllowedParametersHistogram.getParameterNames().contains(s.toLowerCase());
 
         if (!isValid) {
             constraintValidatorContext.disableDefaultConstraintViolation();
             constraintValidatorContext.buildConstraintViolationWithTemplate(
                     ErrorMessages.ILLEGAL_HISTOGRAM_PARAM_VALIDATOR.formatted(
                             s,
-                            String.join(", ", AllowedParametrisesHistogram.getParameterNames())
+                            String.join(", ", AllowedParametersHistogram.getParameterNames())
                     )
             ).addConstraintViolation();
         }

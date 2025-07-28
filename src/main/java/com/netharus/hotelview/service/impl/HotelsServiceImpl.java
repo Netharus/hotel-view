@@ -36,13 +36,14 @@ public class HotelsServiceImpl implements HotelsService {
     }
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public FullHotelResponseDto findHotelById(Long id) {
         return hotelsRepository.findById(id).map(hotelMapper::fromHotelToFullHotelDto)
                 .orElseThrow(() -> new HotelNotFoundException(String.format(ErrorMessages.HOTEL_NOT_FOUND, id)));
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<HotelResponseDto> searchHotels(String name, String brand, String city, String country,
                                                List<String> amenities) {
         Specification<Hotels> specs = (root, query, cb) -> cb.conjunction();
@@ -55,12 +56,14 @@ public class HotelsServiceImpl implements HotelsService {
     }
 
     @Override
+    @Transactional
     public HotelResponseDto add(HotelCreateDto hotelCreateDto) {
         Hotels hotel = hotelMapper.fromHotelCreateDtoToHotel(hotelCreateDto);
         return hotelMapper.fromHotelToHotelDto(hotelsRepository.save(hotel));
     }
 
     @Override
+    @Transactional
     public void addAmenitiesById(Long hotelId, List<Amenity> amenities) {
         Hotels hotel = hotelsRepository.findById(hotelId)
                 .orElseThrow(() -> new HotelNotFoundException(String.format(ErrorMessages.HOTEL_NOT_FOUND, hotelId)));

@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
-public enum AllowedParametrisesHistogram {
+public enum AllowedParametersHistogram {
 
     BRAND("brand"),
     CITY("city"),
@@ -20,7 +20,7 @@ public enum AllowedParametrisesHistogram {
 
     public static Set<String> getParameterNames() {
         return Arrays.stream(values())
-                .map(AllowedParametrisesHistogram::getParamName)
+                .map(AllowedParametersHistogram::getParamName)
                 .collect(Collectors.toSet());
     }
 }

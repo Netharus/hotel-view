@@ -14,6 +14,9 @@ public class UniqueHotelNameValidator implements ConstraintValidator<UniqueHotel
 
     @Override
     public boolean isValid(String name, ConstraintValidatorContext constraintValidatorContext) {
+        if (name == null) {
+            return false;
+        }
         return !hotelsRepository.existsByNameIgnoreCase(name.trim());
     }
 
