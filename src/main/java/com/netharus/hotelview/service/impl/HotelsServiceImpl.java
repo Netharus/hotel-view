@@ -82,7 +82,7 @@ public class HotelsServiceImpl implements HotelsService {
             return null;
         }
         return (root, query, cb) -> cb.like(cb.lower(root.get("brand")),
-                "%" + brand + "%");
+                "%" + brand.toLowerCase() + "%");
     }
 
     private Specification<Hotels> likeCity(String city) {
