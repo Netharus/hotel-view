@@ -17,3 +17,6 @@ databaseChangeLog:
   - include:
       file: v1-add-hotel-amenities-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: v2-load-data.yaml
+      relativeToChangelogFile: true

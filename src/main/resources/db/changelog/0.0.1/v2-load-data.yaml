@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: load-address
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/address.csv
+            tableName: address
+  - changeSet:
+      id: load-contacts
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/contacts.csv
+            tableName: contact
+  - changeSet:
+      id: load-amenities
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/amenities.csv
+            tableName: amenities
+  - changeSet:
+      id: load-arrival-time
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/arrival_time.csv
+            tableName: arrival
+  - changeSet:
+      id: load-hotels
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/hotels.csv
+            tableName: hotels
+  - changeSet:
+      id: load-hotel-amenities
+      author: Mikhail Kondratsiuk
+      changes:
+        - loadData:
+            file: db/changelog/data/hotel_amenities.csv
+            tableName: hotel_amenities

@@ -51,6 +51,7 @@ public class Hotels {
     @OneToOne(cascade = CascadeType.ALL)
     private Contact contacts;
 
+    @Builder.Default
     @ManyToMany(cascade = {CascadeType.MERGE})
     @JoinTable(
             name = "hotel_amenities",
