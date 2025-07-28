@@ -122,6 +122,4 @@ public class HotelsServiceImpl implements HotelsService {
             return cb.or(likePredicates.toArray(new Predicate[0]));
         };
     }
-
-
 }
