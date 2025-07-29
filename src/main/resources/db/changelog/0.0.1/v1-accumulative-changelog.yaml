@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - include:
+      file: v1-add-address-entity.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v1-add-arrival-time-entity.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v1-add-contact-entity.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v1-add-amenities-entity.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v1-add-hotels-entity.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v1-add-hotel-amenities-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: v2-load-data.yaml
+      relativeToChangelogFile: true
