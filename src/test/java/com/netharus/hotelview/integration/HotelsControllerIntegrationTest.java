@@ -63,7 +63,7 @@ public class HotelsControllerIntegrationTest {
     @DisplayName("Test get hotel by id")
     class GetHotelByIdTest {
         @Test
-        void givenHotelId_whenFindHotelById_thenReturnFullHotelResponseDt() {
+        void givenHotelId_whenFindHotelById_thenReturnFullHotelResponseDto() {
             // Act
             FullHotelResponseDto fullHotelResponseDto = testRestTemplate
                     .getForObject(BASE_URL + "/" + hotelId, FullHotelResponseDto.class);
