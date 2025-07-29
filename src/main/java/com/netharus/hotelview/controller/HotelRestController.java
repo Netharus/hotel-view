@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/property-view/hotels")
+@RequestMapping("/property-view")
 @RequiredArgsConstructor
 @Tag(name = "Hotels controller", description = "Endpoints for managing hotel data")
 public class HotelRestController {
@@ -44,7 +44,7 @@ public class HotelRestController {
                     @ApiResponse(responseCode = "200", description = "List of hotels returned successfully")
             }
     )
-    @GetMapping
+    @GetMapping("/hotels")
     @ResponseStatus(HttpStatus.OK)
     public List<HotelResponseDto> getHotels() {
         return hotelsService.getHotelDtoList();
@@ -64,7 +64,7 @@ public class HotelRestController {
                     )
             }
     )
-    @GetMapping("/{hotelId}")
+    @GetMapping("/hotels/{hotelId}")
     @ResponseStatus(HttpStatus.OK)
     public FullHotelResponseDto getHotelById(
             @Parameter(description = "ID of the hotel to retrieve") @PathVariable Long hotelId
@@ -86,7 +86,7 @@ public class HotelRestController {
                     )
             }
     )
-    @PostMapping
+    @PostMapping("/hotels")
     @ResponseStatus(HttpStatus.CREATED)
     public HotelResponseDto createHotel(
             @Parameter(description = "Hotel creation request body") @Valid @RequestBody HotelCreateDto hotelCreateDto
@@ -128,7 +128,7 @@ public class HotelRestController {
                     )
             }
     )
-    @PostMapping("/{hotelId}/amenities")
+    @PostMapping("/hotels/{hotelId}/amenities")
     @ResponseStatus(HttpStatus.OK)
     public void addAmenities(
             @Parameter(description = "ID of the hotel") @PathVariable Long hotelId,
